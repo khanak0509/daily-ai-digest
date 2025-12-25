@@ -9,7 +9,6 @@ import json
 from dotenv import load_dotenv
 from langchain_core.tools import tool
 from langchain_tavily import TavilySearch
-# from langchain_tavily import TavilySearchResults
 import json
 from langchain.agents import create_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -19,27 +18,9 @@ from email.mime.multipart import MIMEMultipart
 
 load_dotenv()
 # llm = ChatGroq(model="llama-3.3-70b-versatile", api_key=os.getenv("GROQ_API_KEY"))
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", api_key=os.getenv("GEMINI_API_KEY"))
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", api_key=os.getenv("GEMINI_API_KEY"))
 
 os.environ["TAVILY_API_KEY"]= os.getenv('TAVILY_API_KEY')
-
-
-
-
-# search = TavilySearchResults(
-#     max_results=5,
-#     include_answer=True,      # optional: includes a quick summary
-#     include_raw_content=True  # optional: includes full page snippets
-# )
-
-tools = [TavilySearch(
-    max_results=5,
-    include_answer=True,      
-    include_raw_content=True  
-)]
-
-
-
 
 agent = create_agent(
     model=llm,
@@ -119,10 +100,11 @@ def send_mail(state: State) -> Dict:
     print("Inside send_mail")
     search_results = state.search_results
     print(search_results)
-    receiver_email = state.email
+    receiver_email = os.getenv("RECEIVER_EMAIL")
 
     sender_email = os.getenv("SENDER_EMAIL")
     sender_password = os.getenv("SENDER_PASSWORD")
+
 
     prompt = PromptTemplate(
         input_variables=["news"],
@@ -142,12 +124,13 @@ Rules:
 
 Newsletter requirements:
 - Catchy subject line
-- Header with logo or emoji (e.g. "🧠 Today's Top AI & Tech News")
+- Header with logo or emoji (e.g. "🧠 Today's Top AI & Tech News") 
 - Each news item in a card-style box with:
-  - Title (bold, larger font)
+  - Title (bold, larger font) and must be  clickable 
   - Short description
-  - Source (if available)
+  - Source (if available) always mandatory
   - Clickable link (button or styled link)
+  - and do not do line clm there should be some widht but not full width for mobile view
 - Subtle dividers between items
 - Footer: "You are receiving this email because you subscribed to AI updates."
 - Use modern fonts, colors, and padding for readability
@@ -206,11 +189,9 @@ workflow=graph.compile()
 result = workflow.invoke({
     'query' : "Give me the latest top 10 news and updates about AI, new open-source repositories, emerging technologies, LangChain, Retrieval-Augmented Generation (RAG), and other major advancements in the field. For each, provide a title, description, source, and link",
     'search_results' : [],
-    'email' : "kkhanak513@gmail.com",
+    'email' : "",
     'subject' : "",
     'content' : ""
-
-
 }
 )
 
