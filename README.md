@@ -7,7 +7,7 @@
 - **🔍 Smart News Aggregation** - Uses Tavily Search API to fetch the latest AI news, emerging technologies, and industry updates
 - **🤖 AI-Powered Curation** - Structures and formats news using Gemini 2.5 Flash
 - **📧 Beautiful HTML Emails** - Automatically generates professional newsletter emails with modern design
-- **⏰ Scheduled Delivery** - Runs on a configurable schedule (default: every 5 minutes)
+- **⏰ Scheduled Delivery** - Runs on a configurable schedule (default: every 24 hours)
 - **🎨 Mobile-Friendly Design** - Email templates optimized for all devices
 
 ## 🏗️ Architecture
@@ -85,8 +85,8 @@ email/
 
 ## 🛠️ Tech Stack
 
-| Component     | Technology            |
-| ------------- | --------------------- |
+| Component           | Technology            |
+| ------------------- | --------------------- |
 | **LLM**       | Gemini 2.5 Flash      |
 | **Workflow**  | LangGraph             |
 | **Search**    | Tavily Search API     |
