@@ -13,19 +13,16 @@
 ## 🏗️ Architecture
 
 ```mermaid
-graph LR
-    A[🕐 Scheduler<br/>run.py] -->|Every 5 min| B[🔍 Search News<br/>Tavily API]
-    B --> C[🤖 AI Agent<br/>Gemini 2.5]
-    C --> D[📝 Structure Data<br/>JSON Schema]
-    D --> E[✉️ Generate Email<br/>HTML Template]
-    E --> F[📤 Send Email<br/>SMTP]
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#f0f4f8','primaryTextColor':'#1a202c','primaryBorderColor':'#4299e1','lineColor':'#4299e1'}}}%%
+graph TD
+    A["⏰ Scheduler"] --> B["🔍 Search AI News"]
+    B --> C["🤖 AI Processing"]
+    C --> D["📧 Send Newsletter"]
 
-    style A fill:#667eea,stroke:#764ba2,color:#fff
-    style B fill:#f093fb,stroke:#f5576c,color:#fff
-    style C fill:#4facfe,stroke:#00f2fe,color:#fff
-    style D fill:#43e97b,stroke:#38f9d7,color:#fff
-    style E fill:#fa709a,stroke:#fee140,color:#fff
-    style F fill:#30cfd0,stroke:#330867,color:#fff
+    style A fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#1565c0
+    style B fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#6a1b9a
+    style C fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#2e7d32
+    style D fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#e65100
 ```
 
 ## 🚀 Quick Start
@@ -88,13 +85,13 @@ email/
 
 ## 🛠️ Tech Stack
 
-| Component     | Technology                        |
-| ------------- | --------------------------------- |
-| **LLM**       | Gemini 2.5 Flash
-| **Workflow**  | LangGraph                         |
-| **Search**    | Tavily Search API                 |
-| **Email**     | Python smtplib (SMTP)             |
-| **Scheduler** | Python schedule                   |
+| Component     | Technology            |
+| ------------- | --------------------- |
+| **LLM**       | Gemini 2.5 Flash      |
+| **Workflow**  | LangGraph             |
+| **Search**    | Tavily Search API     |
+| **Email**     | Python smtplib (SMTP) |
+| **Scheduler** | Python schedule       |
 
 ## 📧 Email Newsletter Preview
 
@@ -105,4 +102,3 @@ Each newsletter includes:
 - 🔗 Direct links to sources
 - 🎨 Modern card-based layout
 - 📱 Mobile-responsive design
-
