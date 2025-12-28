@@ -37,7 +37,7 @@ graph TD
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/khanak0509/daily-ai-digest.git
 cd email
 
 # Install dependencies
